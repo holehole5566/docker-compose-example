@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mariadb-rocksdb:
+    image: chaunceyshannon/mariadb:10-rocksdb
+    networks:
+      mariadb-rocksdb_vpc:
+        ipv4_address: 192.168.168.14
+    container_name: mariadb-rocksdb-192.168.168.14
+    volumes:
+      - /data/cr-volumns/mariadb-rocksdb/data:/var/lib/mysql
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: r
+
+networks:
+  mariadb-rocksdb_vpc:
+    external: true
+    name: vpc_network

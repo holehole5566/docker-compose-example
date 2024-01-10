@@ -1,0 +1,17 @@
+version: '3'
+services:
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.10.1
+    container_name: kibana-192.168.168.240
+    networks:
+      kibana_vpc:
+        ipv4_address: 192.168.168.240
+    environment:
+      ELASTICSEARCH_HOSTS: '["http://192.168.168.18:9200"]'
+      SERVER_REWRITEBASEPATH: 'true'
+      SERVER_BASEPATH: '/kibana'
+
+networks:
+  kibana_vpc:
+    external: true
+    name: vpc_network

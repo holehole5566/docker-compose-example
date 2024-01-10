@@ -1,0 +1,32 @@
+# https://github.com/elastic/beats/blob/master/filebeat/filebeat.reference.yml
+
+
+
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - logs/*.log
+  stream: all # can be all, stdout or stderr
+
+#================================ Processors ===================================
+processors:
+- add_cloud_metadata: ~
+
+
+#========================== Elasticsearch output ===============================
+output.elasticsearch:
+  hosts: ["${ELASTICSEARCH_HOST}"]
+
+
+#============================== Dashboards =====================================
+setup.dashboards:
+  enabled: true
+
+#============================== Kibana =========================================
+setup.kibana:
+  host: "${KIBANA_HOST}"
+
+
+
+  
